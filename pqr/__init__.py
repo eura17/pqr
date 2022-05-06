@@ -1,3 +1,5 @@
+"""Lightweight library for backtesting factor strategies."""
+
 from pqr.factor import *
 from pqr.holdings import *
 from pqr.returns import *

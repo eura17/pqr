@@ -1,3 +1,5 @@
+"""Some additional stuff and "sugar" for creating pipelines."""
+
 from __future__ import annotations
 
 __all__ = [
@@ -13,6 +15,19 @@ import pandas as pd
 
 
 def align(*args: pd.DataFrame | pd.Series) -> tuple[pd.DataFrame | pd.Series, ...]:
+    """Aligns dataframes and series to ake them having the same index and columns.
+
+    Parameters
+    ----------
+    args : sequence of pd.DataFrame or pd.Series
+        Dataframes and series to be aligned.
+
+    Returns
+    -------
+    tuple of pd.DataFrame or pd.Series
+      Aligned dataframes and series.
+    """
+
     args = list(args)
     for i in range(len(args) - 1):  # forward-aligning
         args[i], args[i + 1] = _align_two(args[i], args[i + 1])
@@ -50,4 +65,16 @@ def _align_two(
 
 
 def compose(*steps) -> Callable[[Any, ...], Any]:
+    """Combines functions to pipeline.
+
+    Parameters
+    ----------
+    steps : sequence of callable
+
+    Returns
+    -------
+    callable
+        Function, realizing full pipeline.
+    """
+
     return reduce(lambda f, g: lambda *args, **kwargs: g(f(*args, **kwargs)), steps)
