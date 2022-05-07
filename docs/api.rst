@@ -6,34 +6,26 @@ API Reference
    :undoc-members:
    :show-inheritance:
 
-pqr.factor
-----------
-
-.. automodule:: pqr.factor
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-pqr.signals
+pqr.picking
 -----------
 
-.. automodule:: pqr.signals
+.. automodule:: pqr.picking
    :members:
    :undoc-members:
    :show-inheritance:
 
-pqr.holdings
-------------
+pqr.allocation
+--------------
 
-.. automodule:: pqr.holdings
+.. automodule:: pqr.allocation
    :members:
    :undoc-members:
    :show-inheritance:
 
-pqr.returns
------------
+pqr.evaluation
+--------------
 
-.. automodule:: pqr.returns
+.. automodule:: pqr.evaluation
    :members:
    :undoc-members:
    :show-inheritance:

@@ -36,6 +36,7 @@ extensions = [
 
 # Autodoc settings
 autodoc_typehints = "description"
+autodoc_member_order = "bysource"
 
 # Napoleon settings
 napoleon_google_docstring = False

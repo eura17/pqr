@@ -1,7 +1,6 @@
 """Lightweight library for backtesting factor strategies."""
 
-from pqr.factor import *
-from pqr.holdings import *
-from pqr.returns import *
-from pqr.signals import *
+from pqr.allocation import *
+from pqr.evaluation import *
+from pqr.picking import *
 from pqr.utils import *

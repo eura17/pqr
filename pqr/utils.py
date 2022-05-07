@@ -70,6 +70,7 @@ def compose(*steps) -> Callable[[Any, ...], Any]:
     Parameters
     ----------
     steps : sequence of callable
+         Steps to be composed into pipeline.
 
     Returns
     -------

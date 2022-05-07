@@ -1,9 +1,39 @@
 [tool.poetry]
 name = "pqr"
 version = "1.0.0"
-description = ""
-authors = ["Andrey Babkin <andrey.babkin.ru71@gmail.com>"]
+description = "Lightweight library for backtesting factor strategies"
+authors = [
+    "Andrey Babkin <andrey.babkin.ru71@gmail.com>",
+    "Aleksandr Tomtosov",
+]
 license = "MIT"
+
+readme = "README.md"
+
+repository = "https://github.com/eura17/pqr"
+homepage = "https://pqr.readthedocs.io"
+
+keywords = [
+    "factor strategy",
+    "backtesting",
+    "finance",
+]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"

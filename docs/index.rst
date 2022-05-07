@@ -6,6 +6,7 @@ pqr
    :caption: Contents:
 
    quickstart
+   installation
    api
 
 
