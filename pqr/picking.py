@@ -45,7 +45,7 @@ def filter(
 
     universe, factor = align(universe, factor)
     return pd.DataFrame(
-        np.where(np.asarray(universe, dtype=bool), np.asarray(factor, bool), np.nan),
+        np.where(np.asarray(universe, dtype=bool), np.asarray(factor, float), np.nan),
         index=factor.index.copy(),
         columns=factor.columns.copy(),
     )
@@ -85,7 +85,7 @@ def look_back(
         return pd.DataFrame(
             abs_change / base,
             index=factor.index[period:].copy(),
-            columns=factor.columns.copy()
+            columns=factor.columns.copy(),
         )
     elif agg == "mean":
         return factor.rolling(period, axis=0).mean().iloc[period:]
