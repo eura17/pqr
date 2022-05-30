@@ -35,7 +35,7 @@ def calculate(
 
     holdings, universe_returns = align(holdings, universe_returns)
     returns = np.zeros(len(holdings))
-    returns[1:] = np.asarray(holdings)[:-1] * np.asarray(universe_returns)[1:]
+    returns[1:] = (np.asarray(holdings)[:-1] * np.asarray(universe_returns)[1:]).sum(axis=1)
     return pd.Series(returns, index=holdings.index.copy())
 
 
