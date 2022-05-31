@@ -56,9 +56,9 @@ def to_returns(prices: pd.DataFrame) -> pd.DataFrame:
         Returns of assets universe.
     """
 
-    prices_array = np.asarray(prices)
-    universe_returns = np.zeros_like(prices_array, dtype=float)
-    universe_returns[1:] = np.diff(prices_array, axis=0) / prices_array[:-1]
+    prices_arr = np.asarray(prices)
+    universe_returns = np.zeros_like(prices_arr, dtype=float)
+    universe_returns[1:] = np.diff(prices_arr, axis=0) / prices_arr[:-1]
     universe_returns = np.nan_to_num(universe_returns, nan=0, neginf=0, posinf=0)
     return pd.DataFrame(
         universe_returns,
