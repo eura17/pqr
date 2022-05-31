@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 __all__ = [
-    "calculate",
+    "evaluate",
     "to_returns",
 ]
 
@@ -13,7 +13,7 @@ import pandas as pd
 from pqr.utils import align
 
 
-def calculate(
+def evaluate(
         holdings: pd.DataFrame,
         *,
         universe_returns: pd.DataFrame,
