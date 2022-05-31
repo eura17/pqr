@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pqr"
-version = "1.0.0"
+version = "1.0.1"
 description = "Lightweight library for backtesting factor strategies"
 authors = [
     "Andrey Babkin <andrey.babkin.ru71@gmail.com>",
