@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 __all__ = [
-    "calculate",
+    "evaluate",
     "to_returns",
 ]
 
@@ -13,7 +13,7 @@ import pandas as pd
 from pqr.utils import align
 
 
-def calculate(
+def evaluate(
         holdings: pd.DataFrame,
         *,
         universe_returns: pd.DataFrame,
@@ -35,7 +35,7 @@ def calculate(
 
     holdings, universe_returns = align(holdings, universe_returns)
     returns = np.zeros(len(holdings))
-    returns[1:] = np.asarray(holdings)[:-1] * np.asarray(universe_returns)[1:]
+    returns[1:] = (np.asarray(holdings)[:-1] * np.asarray(universe_returns)[1:]).sum(axis=1)
     return pd.Series(returns, index=holdings.index.copy())
 
 
@@ -56,9 +56,9 @@ def to_returns(prices: pd.DataFrame) -> pd.DataFrame:
         Returns of assets universe.
     """
 
-    prices_array = np.asarray(prices)
-    universe_returns = np.zeros_like(prices_array, dtype=float)
-    universe_returns[1:] = np.diff(prices_array, axis=0) / prices_array[:-1]
+    prices_arr = np.asarray(prices)
+    universe_returns = np.zeros_like(prices_arr, dtype=float)
+    universe_returns[1:] = np.diff(prices_arr, axis=0) / prices_arr[:-1]
     universe_returns = np.nan_to_num(universe_returns, nan=0, neginf=0, posinf=0)
     return pd.DataFrame(
         universe_returns,

@@ -45,7 +45,7 @@ estimate universe returns as percentage change of stocks close prices for 1 peri
 
 .. code:: python
 
-    momentum_returns = pqr.calculate(momentum_holdings, universe_returns=pqr.to_returns(prices))
+    momentum_returns = pqr.evaluate(momentum_holdings, universe_returns=pqr.to_returns(prices))
 
 We have backtest result of a strategy: signals, holdings and returns. Now you can analyze it in any
 way, estimate performance of the strategy and compare it with other strategies, using variety of
@@ -69,7 +69,7 @@ into one pipeline.
         # allocation
         pqr.ew,
         # evaluation
-        pqr.freeze(pqr.calculate, universe_returns=pqr.to_returns(prices)),
+        pqr.freeze(pqr.evaluate, universe_returns=pqr.to_returns(prices)),
     )
 
     momentum_returns = momentum_strategy(prices)

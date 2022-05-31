@@ -29,7 +29,7 @@ momentum = pqr.compose(
     # allocation
     pqr.ew,
     # evaluation
-    pqr.freeze(pqr.calculate, universe_returns=pqr.to_returns(prices)),
+    pqr.freeze(pqr.evaluate, universe_returns=pqr.to_returns(prices)),
 )
 
 # returns series of returns of 30% ew momentum 12-1-12 strategy for stocks > 10$

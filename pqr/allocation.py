@@ -38,13 +38,13 @@ def allocate(
     """
 
     signals, weights = align(signals, weights)
-    signals_array, weights_array = np.asarray(signals), np.asarray(weights)
-    signals_array *= weights_array
+    signals_arr, weights_arr = np.asarray(signals, dtype=float), np.asarray(weights, dtype=float)
+    signals_arr *= weights_arr
 
-    norm = np.nansum(signals_array, axis=1, keepdims=True, dtype=float)
+    norm = np.nansum(signals_arr, axis=1, keepdims=True, dtype=float)
     with np.errstate(divide="ignore", invalid="ignore"):
         return pd.DataFrame(
-            np.nan_to_num(signals_array / norm, nan=0, neginf=0, posinf=0),
+            np.nan_to_num(signals_arr / norm, nan=0, neginf=0, posinf=0),
             index=signals.index.copy(),
             columns=signals.columns.copy(),
         )

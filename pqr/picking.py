@@ -45,7 +45,7 @@ def filter(
 
     universe, factor = align(universe, factor)
     return pd.DataFrame(
-        np.where(np.asarray(universe, dtype=bool), np.asarray(factor, bool), np.nan),
+        np.where(np.asarray(universe, dtype=bool), np.asarray(factor, float), np.nan),
         index=factor.index.copy(),
         columns=factor.columns.copy(),
     )
@@ -79,13 +79,13 @@ def look_back(
     """
 
     if agg == "pct":
-        factor_array = np.asarray(factor)
-        abs_change = (factor_array[period:] - factor_array[:-period])
-        base = factor_array[:-period]
+        factor_arr = np.asarray(factor)
+        abs_change = (factor_arr[period:] - factor_arr[:-period])
+        base = factor_arr[:-period]
         return pd.DataFrame(
             abs_change / base,
             index=factor.index[period:].copy(),
-            columns=factor.columns.copy()
+            columns=factor.columns.copy(),
         )
     elif agg == "mean":
         return factor.rolling(period, axis=0).mean().iloc[period:]
@@ -193,10 +193,10 @@ def quantiles(
         Matrix of True/False, indicating whether factor values are between quantile boarders or not.
     """
 
-    factor_array = np.asarray(factor)
-    lower, upper = np.nanquantile(factor_array, [min_q, max_q], axis=1, keepdims=True)
+    factor_arr = np.asarray(factor)
+    lower, upper = np.nanquantile(factor_arr, [min_q, max_q], axis=1, keepdims=True)
     return pd.DataFrame(
-        (lower <= factor_array) & (factor_array <= upper),
+        (lower <= factor_arr) & (factor_arr <= upper),
         index=factor.index.copy(),
         columns=factor.columns.copy(),
     )
@@ -233,10 +233,10 @@ def top(
         else:
             return np.nan
 
-    factor_array = np.asarray(factor)
-    lower = np.apply_along_axis(_top_k_row, axis=1, arr=factor_array)[:, np.newaxis]
+    factor_arr = np.asarray(factor)
+    lower = np.apply_along_axis(_top_k_row, axis=1, arr=factor_arr)[:, np.newaxis]
     return pd.DataFrame(
-        factor_array >= lower,
+        factor_arr >= lower,
         index=factor.index.copy(),
         columns=factor.columns.copy(),
     )
@@ -273,10 +273,10 @@ def bottom(
         else:
             return np.nan
 
-    factor_array = np.asarray(factor)
-    upper = np.apply_along_axis(_bottom_k_row, axis=1, arr=factor_array)[:, np.newaxis]
+    factor_arr = np.asarray(factor)
+    upper = np.apply_along_axis(_bottom_k_row, axis=1, arr=factor_arr)[:, np.newaxis]
     return pd.DataFrame(
-        factor_array <= upper,
+        factor_arr <= upper,
         index=factor.index.copy(),
         columns=factor.columns.copy()
     )
@@ -305,9 +305,9 @@ def thresholds(
         Matrix of True/False, indicating whether factor values are between thresholds or not.
     """
 
-    factor_array = np.asarray(factor)
+    factor_arr = np.asarray(factor)
     return pd.DataFrame(
-        (min_t <= factor_array) & (factor_array <= max_t),
+        (min_t <= factor_arr) & (factor_arr <= max_t),
         index=factor.index.copy(),
         columns=factor.columns.copy()
     )
